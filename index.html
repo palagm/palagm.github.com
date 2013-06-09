@@ -48,6 +48,7 @@
 	         LoginRadiusSDK.getUserprofile(function (data) {
 	                //just display to a html element 
 	                console.log(JSON.stringify(data));
+	                authenticated(data);
 	         });
 	         return false;
         };        
