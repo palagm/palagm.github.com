@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  
+	<!-- Basic Page Needs -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+	<meta name="description" content="Wedding Invitation Template by Nevide">
+	<meta name="author" content="Nevide">
+	<title>Les and Pam are getting Married!</title>
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen">
+	
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/LoginRadiusSDK.1.0.0.js"></script>
+    <script src="https://hub.loginradius.com/include/js/LoginRadius.js" ></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/html5shiv.js"></script>
+	<script type="text/javascript" src="js/html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/contact.js"></script>
+	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.core.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.widget.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.rlightbox.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<!--<script type="text/javascript" src="js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="js/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="js/supersized.pre.js"></script>-->
+    
+	<script type="text/javascript">      
+		var options={};      
+		options.login=true;  
+		LoginRadiusSDK.onlogin = Successfullylogin;
+
+     	function Successfullylogin() {
+	         LoginRadiusSDK.getUserprofile(function (data) {
+	                //just display to a html element 
+	                console.log(JSON.stringify(data));
+	                authenticated(data);
+	         });
+	         return false;
+        };        
+		LoginRadius_SocialLogin.util.ready(function () { 
+			$ui = LoginRadius_SocialLogin.lr_login_settings;
+			$ui.interfacesize = "";
+			$ui.apikey = "7a297d1e-30c4-41ac-ae1f-7daf798fd96b";
+			$ui.callback=""; 
+			$ui.lrinterfacecontainer ="interfacecontainerdiv"; 
+			LoginRadius_SocialLogin.init(options);  
+		}); 
+		// LoginRadiusSDK.getUsercontact(function (contacts) {
+		//     //just display to a html element, it return JSON array
+		//     document.getElementById("contacts").innerHTML = JSON.stringify(contacts);
+		// });
+
+		function requireauth(){
+			// $('#contact-form').slideUp('fast');
+			$('#thanxforrsvp').hide();
+			$('#identity').hide();
+			$('#auth').show();
+			$('#entry_1110146062').val("");
+			$('#entry_907370162').val("");
+			$('#entry_1036320101').val("");
+			$('#entry_700903665').val("");
+			$('#entry_1504355738').val("");
+		}
+
+		function authenticated(data){
+			// $('#form-bg').removeClass('hidden');
+			// $('#contact-form').slideDown('slow');
+			$('#auth').hide();
+			$('#identity').show();
+			 $('#identityimg').css('background-image', 'url("' + data.ThumbnailImageUrl + '")');
+			// $('#identity').text(data.FullName);
+			$('#send').text("Send RSVP for " + data.FullName);
+			//Name
+			$('#entry_1110146062').val(data.FullName);
+			//Email
+			if(data.Email && data.Email.length > 0)
+				$('#entry_907370162').val(data.Email[0].Value);
+			//Auth Mechanism
+			$('#entry_1036320101').val(data.Provider);
+			//Username
+			$('#entry_700903665').val(data.ProfileName);
+			//message
+			$('#entry_1504355738').val("");
+
+			// $('#identity img').attr('src', data.ThumbnailImageUrl);
+			
+		}
+
+		function sendRSVP(){
+			var rsvpdata = $('#rsvp-form').serializeObject();
+			$('#identity').hide();
+			$('#thanxforrsvp').show();
+			$.ajax({
+			  type: "POST",
+			  url: "https://docs.google.com/a/lesstroud.com/forms/d/1moZdFQuKX3HXw38UIYSnKz3TGAZ8TXUXZh9qaWFJuT4/formResponse",
+			  data: rsvpdata,
+			  dataType: "jsonp"
+			});
+		}
+		
+	</script>
+</head>
+
+<body>
+
+<!-- TOP BAR / Start		   	  
+=========================================== -->	
+<section class="menu">	
+
+	<!-- 960 Container -->
+	<div class="container full">
+	
+		<!-- Responsive Logo -->
+		<a class="logo" href="#home" title="Go to Home"></a>
+		
+		<!-- Navigation Menu -->
+		<div id="nav" class="sixteen columns">
+			<input type="checkbox" id="toggle" />
+			<label for="toggle" class="toggle"></label>
+			<ul class="navigation">
+				<li data-slide="1">Home</li>
+				<li data-slide="2">Story</li>
+				<li data-slide="3">Ceremony</li>
+				<li data-slide="4">Where</li>
+				<li data-slide="5">Social</li>
+				<li data-slide="6">Gallery</li>
+				<li data-slide="7">RSVP</li>
+				<li data-slide="8">Registry</li>
+			</ul>
+		</div>
+		<!-- Navigation Menu / End -->
+	
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- TOP BAR / End		   	  
+=========================================== -->	
+
+<!-- HOME / Start		   	  
+=========================================== -->	
+<section class="slide" id="home" data-slide="1">
+
+	<!-- 960 Container -->
+	<div class="container">
+		<article class="twelve columns offset-by-two">
+			<h1>Les & Pam</h1>
+			<div class="junge line">ARE GETTING</div>
+			<h2>MARRIED!</h2>
+			<!-- <div class="junge">AND THEY ARE PLEASED TO</div> -->
+			<div class="ribbon">September 14th, 2013</div>
+			<!-- <div class="heart"></div> -->
+		</article>
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- HOME / End		   	  
+=========================================== -->	
+
+<!-- ABOUT / Start		   	  
+=========================================== -->	
+<section class="slide" id="about" data-slide="2">
+
+	<!-- 960 Container -->
+	<div class="container">
+	
+		<!-- Les -->
+		<div class="one-third column alpha">
+			<h3>Les</h3>
+			<p>Oblique nostrud ei sea, sae pe labitur ini cus ius ad. An vis quod placerat, mei copio saete. 
+			Has no elit dissentiet, an prom pta feugiat nec. At mei error insolens, elitr lobortis id ius, pri invenire an. 
+			Eleifend adolescens sea ex, modus eirmod offendit cu pri. An vix putant malorum maiorum, dictas possim 
+			pericula vis at, ex nam inter retaris conclusionemque voluptatibus.  </p>
+		</div>
+		<!-- Les / End -->
+	
+		<div class="one-third column">
+		
+			<!-- Floral image -->
+			<img class="floral" src="images/floral_1.png">
+			
+				<!-- Couple Photo -->
+				<h4>She said YES!</h4>
+				<div class="photo">
+					<a href="images/aboutcouple.jpg" class="lightbox-photo" title="Les and Pam">
+						<img src="images/aboutcouple_sm.jpg" alt="content_foto"/>
+					</a>
+				</div>
+				<div class="dogrow">
+					<span class="photo">
+						<a href="images/dogs/mallie.jpg" class="lightbox-photo" title="Les and Pam">
+							<img src="images/dogs/mallie_sm.jpg" alt="content_foto"/>
+						</a>
+					</span>
+					<span class="photo">
+						<a href="images/dogs/maggie.jpg" class="lightbox-photo" title="Les and Pam">
+							<img src="images/dogs/maggie_sm.jpg" alt="content_foto"/>
+						</a>
+					</span>
+				</div>
+				<div class="dogrow">
+					<span class="photo">
+						<a href="images/dogs/chester.jpg" class="lightbox-photo" title="Les and Pam">
+							<img src="images/dogs/chester_sm.jpg" alt="content_foto"/>
+						</a>
+					</span>
+					<span class="photo">
+						<a href="images/dogs/bear.jpg" class="lightbox-photo" title="Les and Pam">
+							<img src="images/dogs/bear_sm.jpg" alt="content_foto"/>
+						</a>
+					</span>
+				</div>
+				<!-- Couple Photo / End -->
+				
+			<!-- Floral image -->
+			<img class="floral" src="images/floral_2.png">
+		
+		</div>
+		
+		<!-- Violet -->
+		<div class="one-third column omega">
+			<h3>Pam</h3>
+			<p>Id ignota salutandi sententiae pro. Conceptam reformidans voluptatibus id quo, an sea probo possit dicunt. 
+			Eam urbanitas scribentur cu, eum magna vivendum no, option disputationi no mei. Eam ei cetero commodo, 
+			ea est singulis inimicus conclusion emque. Cum ut nus quam voluptua, per no ancillae sapientem. 
+			Postea graeci mollis ne vel arrore lone. </p>
+		</div>
+		<!-- Violet / End -->
+
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- ABOUT / End		   	  
+=========================================== -->	
+
+<!-- CEREMONY / Start		   	  
+=========================================== -->	
+<section class="slide" id="ceremony" data-slide="3">
+
+	<!-- 960 Container -->
+	<div class="container">
+	
+		<article class="twelve columns offset-by-two">
+			<h1>The Ceremony</h1>
+			<div class="junge line">WILL BE HELD ON</div>
+			<h2>14 September &#x2766; 6pm</h2>		
+			<div class="junge line2">AT</div>
+			<div class="junge">THE PARRISH FAMILY FARM</div>
+			<div class="church"></div>
+			<!-- <img src="images/ceremony.png"/> -->
+			<!-- <img src="images/grass_sm.png"/> -->
+		</article>
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- CEREMONY / End		   	  
+=========================================== -->	
+
+
+<!-- WHERE / Start		   	  
+=========================================== -->	
+<section class="slide" id="where" data-slide="4">
+
+	<!-- 960 Container -->
+	<div class="container">
+		<div class="one-third column alpha">
+			<h3>Map</h3>
+			<div class="photo">
+				<a href="images/map_state.png" class="lightbox-photo" title="1515 Greenview Dr, Kernsersville, NC">
+					<img src="images/map_state.png" alt="content_foto"/>
+				</a>
+			</div>
+			
+			<!-- <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-81.048,35.01,-79.246,36.241&amp;layer=mapnik&amp;marker=36.06863,-80.05729" style="border: 1px solid black"></iframe><br /><small><a href="http://www.openstreetmap.org/?lat=35.6255&amp;lon=-80.14699999999999&amp;zoom=9&amp;layers=M&amp;mlat=36.06863&amp;mlon=-80.05729">View Larger Map</a></small> -->
+		</div>
+		<!-- Travel -->
+		<div id="travelcolumn" class="one-third column">
+			<h3>Travel</h3>
+			<div>
+				<div class="label">Plane<br/><img class="icon" src="images/plane.png"/></div>
+				<div class="description">For our long distance guests, the Greensboro (GMT), Raliegh (RDU), and Charlotte (CLT) airports are only a short drive away.</div>
+			</div>
+			<div>
+				<div class="label">Car<br/><img class="icon" src="images/auto.png"/></div>
+				<div class="description">I-40 & I-85 are both good routes into Kernersville. From there, you will look for NC-66 and then Greenview Drive. <a href="https://maps.google.com/maps?saddr=Current+Location&daddr=1515+Greenview+Dr,+Kernersville,+NC&hl=en&sll=35.982119,-80.019791&sspn=0.219475,0.306587&geocode=FQZTHAIdnm8u-ykJl5jiFR5UiDEBW5nCBomkFQ%3BFVJiJgIdA2o6-yk5NWA-AQdTiDGENUCvPmklZQ&mra=ls&t=m&z=10">Driving Directions</a></div>
+			</div>
+			<div>
+				<div class="label">Hoof<br/><img class="icon" src="images/horse_rider.png"/></div>
+				<div class="description">If you are confusing the groom with <a href="http://lesstroud.ca/survivorman/home.php">Survivorman</a> you may think this is a good idea. It's not.  If you still decide to use nature's public transit, and you don't live next door, you may want to plan your journey far in advance.</div>
+			</div>
+		</div>
+		<!-- Travel / End -->
+		
+		<!-- Lodging -->
+		<div id="lodgingcolumn" class="one-third column">
+			<h3>Lodging</h3>
+			<div>
+				<div class="label"><img class="icon" src="images/holidayinn.png"/></div>
+				<div class="description">About as close as it gets<br/>1570 Highway 66 <br/>Kernersville, NC 27284 <br/>(336) 564-3333 <br/><a href="https://plus.google.com/100546316002177343382/about?gl=us&hl=en">More Info</a>
+				</div>
+			</div>
+			<div>
+				<div class="label"><img class="icon" src="images/courtyard.png"/></div>
+				<div class="description">Near the Greensboro Airport<br/>7811 National Service Road <br/>Greensboro, NC 27409 <br/>(336) 668-1090 <br/><a href="https://plus.google.com/117894217603420175503/about?gl=us&hl=en">More Info</a>
+				</div>
+			</div>
+			<div>
+				<div class="label"><img class="icon" src="images/bestwestern.png"/></div>
+				<div class="description">Near the Greensboro Airport<br/>7800 National Service Road<br/> Greensboro, NC 27409<br/> (336) 454-0333 <br/><a href="https://plus.google.com/113804268550801241770/about?gl=us&hl=en">More Info</a>
+				</div>
+			</div>
+		</div>
+		<!-- Lodging / End -->
+	
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- WHERE / End		   	  
+=========================================== -->	
+<!-- SOCIAL / Start		   	  
+=========================================== -->	
+<section class="slide" id="social" data-slide="5">
+
+	<!-- 960 Container -->
+	<div class="container">
+		<article class="twelve columns offset-by-two">
+			<h3>Connect With Us</h3>
+			<div class="content">
+				<p>We always love to connect with our friends.  So, please share your warm wishes, old pictures, new pictures, and anything else we wouldn't mind our mother's seeing via twitter.</p> 
+				<p>We'll have a professional photographer.  So don't worry about having to capture everything.  However, we would love to see those candid shots only our friends can get.  Use hashtag</p>
+			</div>
+			<h4><a href="https://twitter.com/share?hashtags=PamAndLesAreGettingMarried" target="_blank">#PamAndLesAreGettingMarried<img src="images/twitter.png"/></a></h4>
+		</article>
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- SOCIAL / End		   	  
+=========================================== -->	
+<!-- GALLERY / Start		   	  
+=========================================== -->	
+<section class="slide" id="gallery" data-slide="6">
+
+<!-- Floral image -->
+<img class="floral" src="images/floral_1.png">
+
+	<!-- 960 Container -->
+	<div class="container">
+		<!-- Carousel Navigation Container -->
+		<div class="four columns carousel-intro">
+		
+			<!-- Carousel Navigation -->
+			<div class="carousel-navi clearfix">
+				<div id="work-prev" class="arrow-left jcarousel-prev"><span class="icon-left"><</span></div>
+				<div id="work-next" class="arrow-right jcarousel-next"><span class="icon-right">></span></div>
+			</div>
+			<!-- Carousel Navigation / End -->
+			
+			<div class="clearfix"></div>
+			
+			<!-- Carousel Text -->
+			<section class="entire">
+				<h3 class="junge">Gallery</h3>
+				<p>Various Pictures from our engagement and life</p>
+			</section>
+			<!-- Carousel Text / End -->
+			
+		</div>
+		<!-- Carousel Navigation Container / End -->
+		<!-- Carousel of Photos -->
+		<section class="jcarousel recent-work-jc">
+			<ul>
+				<!-- <!-- <!-- Gallery Item -->
+				<!-- <li class="four columns">
+					<a href="images/full-size/photo-2-full.jpg" title="Photo Title Here" class="gallery-item lightbox-photo">
+						<img src="images/photo-2.jpg" alt="">
+					</a>
+				</li>
+				 -->
+				<li class="four columns"><a href="images/gallery/LesandPam_064.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_064.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_123.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_123.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_116.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_116.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_170.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_170.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_184.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_184.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_136.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_136.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSCN0167.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSCN0167.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMGP0448.JPG_3.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0448.JPG_3.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0837.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0837.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_021.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_021.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_143.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_143.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/mallie yard.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/mallie yard.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_102.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_102.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_142.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_142.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0311.JPG_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0311.JPG_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/PC010082.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010082.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/PC010075_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010075_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0570.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0570.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0067_24.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0067_24.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0164.JPG" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0164.JPG" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/Seminar.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/Seminar.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_132.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_132.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_168.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_168.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0231.JPG_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0231.JPG_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0059.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0059.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_133.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_133.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_191.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_191.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0035.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0035.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_150.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_150.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_011.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_011.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_063.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_063.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_178.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_178.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0005_22.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0005_22.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_125.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_125.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/PC010059_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010059_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMGP0449.JPG_6.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0449.JPG_6.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0269.JPG_12.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0269.JPG_12.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0204.JPG" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0204.JPG" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMGP0650.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0650.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0355.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0355.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_188.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_188.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_058.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_058.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMGP0464.JPG_5.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0464.JPG_5.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_065.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_065.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0494.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0494.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/PC010132_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010132_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/My CowGirl_3.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/My CowGirl_3.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_129.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_129.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0692.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0692.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/PC010106_2.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010106_2.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0029_6.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0029_6.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_117.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_117.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0172.JPG" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0172.JPG" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/DSC_0037.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0037.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_120.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_120.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_017.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_017.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMGP0653.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0653.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_005.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_005.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_072.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_072.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/Kiawah May 2004 014_3.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/		Kiawah May 2004 014_3.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_014.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_014.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/LesandPam_059.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_059.jpg" alt=""></a></li>
+				<li class="four columns"><a href="images/gallery/IMG_0084.jpg" title="Photo Title Here" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0084.jpg" alt=""></a></li>
+
+			</ul>
+		</section>
+		<!-- Carousel of Photos / End -->
+		
+		
+	</div>
+	<!-- 960 Container / End -->
+
+<!-- Floral image -->
+<img class="floral" src="images/floral_2.png">
+
+</section>
+<!-- GALLERY / End		   	  
+=========================================== -->	
+
+<!-- RSVP / Start		   	  
+=========================================== -->		
+<section class="slide" id="rsvp" data-slide="7">
+
+	<!-- 960 Container -->
+	<div class="container">
+
+		<div class="ribbon"><h2>RSVP</h2></div>
+
+		<div class="success-message">
+			<div class="alert" style="margin: 0;">Your message has been sent!</div>
+		</div>
+
+		
+		<div id="form-bg" class="thirteen columns">
+			
+			<div id="contact-form" class="twelve columns clearfix">
+				<form action="https://docs.google.com/a/lesstroud.com/forms/d/1moZdFQuKX3HXw38UIYSnKz3TGAZ8TXUXZh9qaWFJuT4/formResponse" method="POST" id="rsvp-form" target="_self" onsubmit="">
+					<div class="ten five columns offset-by-one">
+						<div class="question">
+							<p>Will you be joining us?</p>
+							<div id="joinresponses" class="responses"/>
+								<input type="radio" name="entry.160791921" value="Yes" id="group_160791921_1" class="ss-q-radio" aria-label="Yes" checked="checked">
+								<label for="group_160791921_1" class="ss-choice-label"><span>Yes, we'd love to come</span></label>
+								<input type="radio" name="entry.160791921" value="No" id="group_160791921_2" class="ss-q-radio" aria-label="No">
+								<label for="group_160791921_2" class="ss-choice-label"><span>Sadly, we can't make it</span></label>
+							</div>
+						</div>
+
+						<p>Number of your party attending?</p>
+						<div class="question">
+							<div id="partyresponses" class="responses"/>
+								<input type="radio" name="entry.1403271359" value="+0" id="group_1403271359_1" class="ss-q-radio" aria-label="+0" checked="checked">
+								<label for="group_1403271359_1" class="ss-choice-label"><span>Just Me</span></label>
+								<input type="radio" name="entry.1403271359" value="+1" id="group_1403271359_2" class="ss-q-radio" aria-label="+1">
+								<label for="group_1403271359_2" class="ss-choice-label"><span>+1</span></label>
+								<input type="radio" name="entry.1403271359" value="+2" id="group_1403271359_3" class="ss-q-radio" aria-label="+2">
+								<label for="group_1403271359_3" class="ss-choice-label"><span>+2</span></label>
+								<input type="radio" name="entry.1403271359" value="+3" id="group_1403271359_4" class="ss-q-radio" aria-label="+3">
+								<label for="group_1403271359_4" class="ss-choice-label"><span>+3</span></label>
+								<input type="radio" name="entry.1403271359" value="+4" id="group_1403271359_5" class="ss-q-radio" aria-label="+4">
+								<label for="group_1403271359_5" class="ss-choice-label"><span>+4</span></label>
+								<input type="radio" name="entry.1403271359" value="+5" id="group_1403271359_6" class="ss-q-radio" aria-label="+5">
+								<label for="group_1403271359_6" class="ss-choice-label"><span>+5</span></label>
+							</div>
+						</div>
+						<div class="question">
+							<p>Is there anything else you would like for us to know?</p>
+							<textarea name="entry.1504355738" id="entry_1504355738" class="text textarea" ></textarea>
+						</div>
+						<input type="hidden" name="entry.1110146062" value="" class="ss-q-short" id="entry_1110146062" dir="auto">
+						<input type="hidden" name="entry.907370162" value="" class="ss-q-short" id="entry_907370162" dir="auto">
+						<input type="hidden" name="entry.1036320101" value="" class="ss-q-short" id="entry_1036320101" dir="auto">
+						<input type="hidden" name="entry.700903665" value="" class="ss-q-short" id="entry_700903665" dir="auto">
+						
+						<div id="auth">
+							<p>Please login with one of the following providers in order to RSVP</p>
+							<div id="interfacecontainerdiv" class="interfacecontainerdiv"></div>
+						</div>
+						<div id="identity">
+							<!-- <img src=""/> -->
+							<div id="identityimg"></div>
+							<button id="send" class="send" onclick="sendRSVP();">Send RSVP</button>
+						</div>
+						<div id="thanxforrsvp">Thank you!</div>
+						<div class="loading"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- Contact Form / End -->
+
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- RSVP / End		   	  
+=========================================== -->
+
+<!-- REGISTRY / Start		   	  
+=========================================== -->	
+<section class="slide" id="registry" data-slide="8">
+
+	<!-- 960 Container -->
+	<div class="container">
+		<article class="sixteen columns">
+			<h3>Registry</h3>
+			<div class="ten columns offset-by-three content">What we really want is just to share our special day with the people that matter most, but if you were thinking about gifts we are registered at the following locations:</div>
+			<div class="sixteen columns">
+				<a href="https://secure.williams-sonoma.com/registry/t89w9jvstx/registry-list.html" target="_blank"><img src="images/williamsonoma.png"/></a>
+				<a href="https://www.belk.com/bridalregistry/bridal_registry.jsp" target="_blank"><img src="images/belk.png"/></a>
+				<a href="http://www.target.com/wedd/registry/FVsz9HneySAQ8yRTOE9r2w" target="_blank"><img src="images/target.png"/></a>
+				<a href="http://www.amazon.com/registry/wedding/AMB73MKL9WOR" target="_blank"><img src="images/amazon.png"/></a>
+			</div>
+		</article>
+	</div>
+	<!-- 960 Container / End -->
+	
+</section>
+<!-- REGISTRY / End		   	  
+=========================================== -->	
+<script type="text/javascript">
+	requireauth();
+</script>
+</body>
+</html>
