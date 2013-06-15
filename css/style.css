@@ -1399,6 +1399,13 @@ a:visited {
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
+	#home {
+		height: 681px;
+		background:url('../images/engagement/LesandPam_072_med.jpg') no-repeat fixed top center transparent;
+		padding: 0;
+	}
+	#home h1 {font-size: 55px; line-height:55px;}
+	#home h2{font-size: 140px; line-height:140px;}
 	#home .line:before,#where .line:before {left: 60px;}
 	#home .line:after,#where .line:after {right: 60px;}
 	#ceremony .line:before,#where .line:before {left: 60px;}
