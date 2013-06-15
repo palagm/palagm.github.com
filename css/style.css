@@ -1398,16 +1398,18 @@ a:visited {
 ========================================= */
 
 /* Tablet */
-@media only screen and (min-width: 768px) and (max-width: 959px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
 	#home {
 		height: 681px;
 		background:url('../images/engagement/LesandPam_072_med.jpg') no-repeat fixed top center transparent;
 		padding: 0;
 	}
 	#home h1 {font-size: 55px; line-height:55px;}
-	#home h2{font-size: 140px; line-height:140px;}
+	#home h2{font-size: 120px; line-height:120px;}
+	#home .ribbon {background: url('../images/ribbon-small.png') no-repeat center; font-size: 11px; height: 52px; margin: 0;}
 	#home .line:before,#where .line:before {left: 60px;}
 	#home .line:after,#where .line:after {right: 60px;}
+	#about h3 {padding: 0; font-size:;}
 	#ceremony .line:before,#where .line:before {left: 60px;}
 	#ceremony .line:after,#where .line:after {right: 60px;}
 	#ceremony .line2:before,#where .line:before {left: 60px;}
@@ -1442,11 +1444,11 @@ a:visited {
 	#home .line:before {content: ""; width: 50px; left: 7px;}
 	#home .line:after {content: ""; width: 50px; right: 7px;}
 	#home .junge, #where .junge {font-size: 11px;}
-	#home .ribbon {background: url('../images/ribbon-small.png') no-repeat center; font-size: 12px; height: 52px; margin: 0;}
+	#home .ribbon {background: url('../images/ribbon-small.png') no-repeat center; font-size: 11px; height: 52px; margin: 0;}
 	#nav {width:100%;}
 	.navigation{	width: 100%;	float: left; list-style: none; margin: 0; padding:0;}
 	.navigation li{float: left; width:25%;}
-	#about h3 {padding: 0;}
+	#about h3 {padding: 0;font-size: 42px; line-height: 44px;}
 	#about p {
 		margin: 15px 0 0 0;
 		line-height: 18px;
@@ -1571,8 +1573,31 @@ a:visited {
 	}
 }
 
+@media only screen and (min-width : 320px) and (max-width : 767px) and (orientation : portrait) { 
+	#home {
+		height: 310px;
+		background:url('../images/engagement/LesandPam_072_320.jpg') no-repeat fixed top center transparent;
+		padding: 0;
+	}
+	#home h1 {font-size: 20px; line-height:20px; padding-top:100px;}
+	#home h2{font-size: 50px; line-height:50px;}
+	#home .junge, #where .junge {font-size: 7px; line-height:20px;}
+	#home .ribbon {background: url('../images/ribbon-small.png') no-repeat center; font-size: 11px; height: 52px; margin: 0; margin-top: 35px;}
+	/*#home .line:before,#where .line:before {left: 73px;top: 1em;}
+	#home .line:after,#home .line:after {right: 73px;top: 1em;}*/
+	#home .line:before,#where .line:before {height:1px; width: 20px; left: 60px; top:10px;}
+	#home .line:after,#where .line:after {height: 1px; width: 20px; right: 60px; top:10px;}
+	#ceremony .line:before {content: ""; width: 33px; left: 7px;}
+	#ceremony .line:after {content: ""; width: 33px; right: 7px;}
+	#ceremony .line2:before {content: ""; width: 110px; left: 7px;}
+	#ceremony .line2:after {content: ""; width: 110px; right: 7px;}
+	#contact-form { padding: 15px;}
+
+}
+
+
 /* Mobile Landscape */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 321px) and (max-width: 767px) and (orientation : landscape){
 	#home .line:before,#where .line:before {left: 73px;top: 1em;}
 	#home .line:after,#home .line:after {right: 73px;top: 1em;}
 	#ceremony .line:before {content: ""; width: 73px; left: 7px;}
