@@ -1,14 +1,122 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<title>Les and Pam Are Getting Married - Coming Soon</title>
-	<link rel="stylesheet" href="css/comingsoon.css">
+  
+	<!-- Basic Page Needs -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+	<meta name="description" content="Wedding Invitation Template by Nevide">
+	<meta name="author" content="Nevide">
+	<title>Les and Pam are getting Married!</title>
+	
+	<!-- Styles -->
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen">
+	
+	<!-- Scripts -->
+	<script type="text/javascript" src="js/LoginRadiusSDK.1.0.0.js"></script>
+    <script src="https://hub.loginradius.com/include/js/LoginRadius.js" ></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/html5shiv.js"></script>
+	<script type="text/javascript" src="js/html5shiv-printshiv.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/contact.js"></script>
+	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+	<script type="text/javascript" src="js/waypoints.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.core.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.widget.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.rlightbox.min.js"></script>
+	<script type="text/javascript" src="js/js.js"></script>
+	<!--<script type="text/javascript" src="js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="js/supersized.shutter.min.js"></script>
+    <script type="text/javascript" src="js/supersized.pre.js"></script>-->
+    
+	<script type="text/javascript">      
+		var options={};      
+		options.login=true;  
+		LoginRadiusSDK.onlogin = Successfullylogin;
+
+     	function Successfullylogin() {
+	         LoginRadiusSDK.getUserprofile(function (data) {
+	                //just display to a html element 
+	                console.log(JSON.stringify(data));
+	                authenticated(data);
+	         });
+	         return false;
+        };        
+		LoginRadius_SocialLogin.util.ready(function () { 
+			$ui = LoginRadius_SocialLogin.lr_login_settings;
+			$ui.interfacesize = "";
+			$ui.apikey = "7a297d1e-30c4-41ac-ae1f-7daf798fd96b";
+			$ui.callback=""; 
+			$ui.lrinterfacecontainer ="interfacecontainerdiv"; 
+			LoginRadius_SocialLogin.init(options);  
+		}); 
+		// LoginRadiusSDK.getUsercontact(function (contacts) {
+		//     //just display to a html element, it return JSON array
+		//     document.getElementById("contacts").innerHTML = JSON.stringify(contacts);
+		// });
+
+		function requireauth(){
+			// $('#contact-form').slideUp('fast');
+			$('#thanxforrsvp').hide();
+			$('#identity').hide();
+			$('#auth').show();
+			$('#entry_1110146062').val("");
+			$('#entry_907370162').val("");
+			$('#entry_1036320101').val("");
+			$('#entry_700903665').val("");
+			$('#entry_1504355738').val("");
+		}
+
+		function authenticated(data){
+			// $('#form-bg').removeClass('hidden');
+			// $('#contact-form').slideDown('slow');
+			$('#auth').hide();
+			$('#identity').show();
+			 $('#identityimg').css('background-image', 'url("' + data.ThumbnailImageUrl + '")');
+			// $('#identity').text(data.FullName);
+			$('#send').text("Send RSVP for " + data.FullName);
+			//Name
+			$('#entry_1110146062').val(data.FullName);
+			//Email
+			if(data.Email && data.Email.length > 0)
+				$('#entry_907370162').val(data.Email[0].Value);
+			//Auth Mechanism
+			$('#entry_1036320101').val(data.Provider);
+			//Username
+			$('#entry_700903665').val(data.ProfileName);
+			//message
+			$('#entry_1504355738').val("");
+
+			// $('#identity img').attr('src', data.ThumbnailImageUrl);
+			
+		}
+
+		function sendRSVP(){
+			var rsvpdata = $('#rsvp-form').serializeObject();
+			$('#identity').hide();
+			$('#thanxforrsvp').show();
+			$.ajax({
+			  type: "POST",
+			  url: "https://docs.google.com/a/lesstroud.com/forms/d/1moZdFQuKX3HXw38UIYSnKz3TGAZ8TXUXZh9qaWFJuT4/formResponse",
+			  data: rsvpdata,
+			  dataType: "jsonp"
+			});
+		}
+		
+	</script>
 </head>
 
 <body>
-<<<<<<< HEAD
 
 <!-- TOP BAR / Start		   	  
 =========================================== -->	
@@ -351,7 +459,6 @@
 				<li class="four columns"><a href="images/gallery/LesandPam_014.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_014.jpg" alt=""></a></li>
 				<li class="four columns"><a href="images/gallery/LesandPam_059.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_059.jpg" alt=""></a></li>
 				<li class="four columns"><a href="images/gallery/IMG_0084.jpg" title="Chester & Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0084.jpg" alt=""></a></li>
-
 			</ul>
 		</section>
 		<!-- Carousel of Photos / End -->
@@ -471,8 +578,5 @@
 <script type="text/javascript">
 	requireauth();
 </script>
-=======
-  	<h1 class="centered">Coming Soon</h1>
->>>>>>> 8200145562644e0779d858a6225e7b84c3f3193e
 </body>
 </html>
