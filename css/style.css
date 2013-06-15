@@ -1,8 +1,7 @@
 /* Custom */
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300);
 @import url(http://fonts.googleapis.com/css?family=Great+Vibes);
-@import url(http://fonts.googleapis.com/css?family=Abel|BenchNine:300,400,700|Sorts+Mill+Goudy:400,400italic|News+Cycle:400,700|Lora:400,700,400italic,700italic|Poiret+One|Bitter:400,700,400italic|PT+Serif:400,700,400italic,700italic|Didact+Gothic|Roboto+Slab:400,100,300,700);
-@import url(http://fonts.googleapis.com/css?family=Jacques+Francois+Shadow|Dorsa|Diplomata);
+@import url(http://fonts.googleapis.com/css?family=BenchNine:300,400,700|PT+Serif:400,700,400italic,700italic);
 .icon.embossed{
 	opacity: 0.5;
 	position:absolute;
