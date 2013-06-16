@@ -18,7 +18,7 @@ var galleryImages = [{
     name:"LesandPam_136.jpg",
     title:"Pam & Les"
   },{ 
-    name:"DSCN0167.jpg",
+    name:"DSCN0167.JPG",
     title:"Chester"
   },{ 
     name:"IMGP0448.JPG_3.jpg",
