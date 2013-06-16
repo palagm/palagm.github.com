@@ -114,7 +114,7 @@ var galleryImages = [{
     name:"DSC_0204.JPG",
     title:"Mallie"
   },{ 
-    name:"IMGP0650.jpg",
+    name:"IMGP0650.JPG",
     title:"Pam & Chester"
   },{ 
     name:"DSC_0355.jpg",
@@ -168,7 +168,7 @@ var galleryImages = [{
     name:"LesandPam_017.jpg",
     title:"Pam & Les"
   },{ 
-    name:"IMGP0653.jpg",
+    name:"IMGP0653.JPG",
     title:"Chester"
   },{ 
     name:"LesandPam_005.jpg",
