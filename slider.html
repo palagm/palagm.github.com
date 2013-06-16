@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="js/gallery_images.js"></script>
+	<script type="text/javascript" src="js/lazyloader.js"></script>
+	<style type="text/css">
+	#gallery{
+		width: 100%;
+    	overflow:hidden;
+	}
+	#gallery ul{
+		overflow-x: scroll;
+    overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		white-space: nowrap;
+    	margin-bottom: -16px;
+	}
+	#gallery ul li{
+		display: inline-block;
+	}
+	#gallery ul li img {
+		width:200px;
+		height:200px;
+		padding: 10px;
+		border: 1px solid #bbb;
+		border-radius: 4px;
+		box-shadow: 0px 2px 5px #aaa;
+		margin: 10px;
+	}
+	.lazy-load, .lazy-loaded {
+	  -webkit-transition: opacity 0.3s;
+	  -moz-transition: opacity 0.3s;
+	  -ms-transition: opacity 0.3s;
+	  -o-transition: opacity 0.3s;
+	  transition: opacity 0.3s;
+	  opacity: 0;
+	}
+
+	.lazy-loaded { opacity: 1; }
+	</style>
+	<script type="text/javascript">
+		function galleryCarouselItemHTML(item){
+			// return '<li class="four columns"><a href="images/gallery/' + item.name + '" title="' + item.title + '" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/' + item.name +'" alt="' + item.title + '"></a></li>';
+			return '<li class="four columns"><a href="images/gallery/' + item.name + '" title="' + item.title + '" class="gallery-item lightbox-photo"><img class="lazy-load" src="images/paper.png" data-src="images/gallery/thumbnails/' + item.name +'" alt="' + item.title + '"></a></li>';
+		};
+		function loadImages(){
+			galleryImages.forEach(function(item){
+				$('#gallery ul').append(galleryCarouselItemHTML(item));
+			});
+		}
+		$(document).ready(function(){	
+		    var addEventListener =  window.addEventListener || function(n,f) { window.attachEvent('on'+n, f); },
+      			removeEventListener = window.removeEventListener || function(n,f,b) { window.detachEvent('on'+n, f); };  
+		  lazyLoader.init(document.querySelector('#gallery ul'));
+		  loadImages();
+		  
+		});
+	</script>
+
+</head>
+<body>
+
+<div id="gallery">
+	<ul>
+		
+	</ul>
+</div>
+</body>
+</html>

@@ -15,12 +15,18 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/jquery-ui-1.8.16.custom.css" type="text/css" media="screen">
-	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/magnific.css" type="text/css" media="screen">
 	
 	<!-- Scripts -->
+	 <script type="text/javascript" src="js/modernizr.2.6.2.js"></script>
+	 <!--
+	 <script type="text/javascript" src="js/gallery_images.js"></script>
+	 <script type="text/javascript" src="js/lazyloader.js"></script> -->
 	<script type="text/javascript" src="js/LoginRadiusSDK.1.0.0.js"></script>
-    <script src="https://hub.loginradius.com/include/js/LoginRadius.js" ></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://hub.loginradius.com/include/js/LoginRadius.js" ></script>
+	<script type="text/javascript" src="js/min/app-min.js"></script>
+<!--
+	<script type="text/javascript" src="js/jquery-1.10.1.js"></script>
 	<script type="text/javascript" src="js/html5shiv.js"></script>
 	<script type="text/javascript" src="js/html5shiv-printshiv.js"></script>
 	<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
@@ -29,89 +35,8 @@
 	<script type="text/javascript" src="js/contact.js"></script>
 	<script type="text/javascript" src="js/jquery.stellar.min.js"></script>
 	<script type="text/javascript" src="js/waypoints.min.js"></script>
-	<script type="text/javascript" src="js/jquery.ui.core.min.js"></script>
-	<script type="text/javascript" src="js/jquery.ui.widget.min.js"></script>
-	<script type="text/javascript" src="js/jquery.ui.rlightbox.min.js"></script>
-	<script type="text/javascript" src="js/js.js"></script>
-	<!--<script type="text/javascript" src="js/supersized.3.2.7.min.js"></script>
-    <script type="text/javascript" src="js/supersized.shutter.min.js"></script>
-    <script type="text/javascript" src="js/supersized.pre.js"></script>-->
-    
-	<script type="text/javascript">      
-		var options={};      
-		options.login=true;  
-		LoginRadiusSDK.onlogin = Successfullylogin;
-
-     	function Successfullylogin() {
-	         LoginRadiusSDK.getUserprofile(function (data) {
-	                //just display to a html element 
-	                console.log(JSON.stringify(data));
-	                authenticated(data);
-	         });
-	         return false;
-        };        
-		LoginRadius_SocialLogin.util.ready(function () { 
-			$ui = LoginRadius_SocialLogin.lr_login_settings;
-			$ui.interfacesize = "";
-			$ui.apikey = "7a297d1e-30c4-41ac-ae1f-7daf798fd96b";
-			$ui.callback=""; 
-			$ui.lrinterfacecontainer ="interfacecontainerdiv"; 
-			LoginRadius_SocialLogin.init(options);  
-		}); 
-		// LoginRadiusSDK.getUsercontact(function (contacts) {
-		//     //just display to a html element, it return JSON array
-		//     document.getElementById("contacts").innerHTML = JSON.stringify(contacts);
-		// });
-
-		function requireauth(){
-			// $('#contact-form').slideUp('fast');
-			$('#thanxforrsvp').hide();
-			$('#identity').hide();
-			$('#auth').show();
-			$('#entry_1110146062').val("");
-			$('#entry_907370162').val("");
-			$('#entry_1036320101').val("");
-			$('#entry_700903665').val("");
-			$('#entry_1504355738').val("");
-		}
-
-		function authenticated(data){
-			// $('#form-bg').removeClass('hidden');
-			// $('#contact-form').slideDown('slow');
-			$('#auth').hide();
-			$('#identity').show();
-			 $('#identityimg').css('background-image', 'url("' + data.ThumbnailImageUrl + '")');
-			// $('#identity').text(data.FullName);
-			$('#send').text("Send RSVP for " + data.FullName);
-			//Name
-			$('#entry_1110146062').val(data.FullName);
-			//Email
-			if(data.Email && data.Email.length > 0)
-				$('#entry_907370162').val(data.Email[0].Value);
-			//Auth Mechanism
-			$('#entry_1036320101').val(data.Provider);
-			//Username
-			$('#entry_700903665').val(data.ProfileName);
-			//message
-			$('#entry_1504355738').val("");
-
-			// $('#identity img').attr('src', data.ThumbnailImageUrl);
-			
-		}
-
-		function sendRSVP(){
-			var rsvpdata = $('#rsvp-form').serializeObject();
-			$('#identity').hide();
-			$('#thanxforrsvp').show();
-			$.ajax({
-			  type: "POST",
-			  url: "https://docs.google.com/a/lesstroud.com/forms/d/1moZdFQuKX3HXw38UIYSnKz3TGAZ8TXUXZh9qaWFJuT4/formResponse",
-			  data: rsvpdata,
-			  dataType: "jsonp"
-			});
-		}
-		
-	</script>
+	<script type="text/javascript" src="js/magnific-0.8.9.js"></script>
+	<script type="text/javascript" src="js/app.js"></script> -->
 </head>
 
 <body>
@@ -372,8 +297,8 @@
 		
 			<!-- Carousel Navigation -->
 			<div class="carousel-navi clearfix">
-				<div id="work-prev" class="arrow-left jcarousel-prev"><span class="icon-left"><</span></div>
-				<div id="work-next" class="arrow-right jcarousel-next"><span class="icon-right">></span></div>
+				<div id="gallery-prev" class="arrow-left jcarousel-prev"><span class="icon-left"><</span></div>
+				<div id="gallery-next" class="arrow-right jcarousel-next"><span class="icon-right">></span></div>
 			</div>
 			<!-- Carousel Navigation / End -->
 			
@@ -389,78 +314,9 @@
 		</div>
 		<!-- Carousel Navigation Container / End -->
 		<!-- Carousel of Photos -->
-		<section class="jcarousel recent-work-jc">
+		<section id="jc-gallery" class="jcarousel gallery-jc">
 			<ul>
-				<!-- <!-- <!-- Gallery Item -->
-				<!-- <li class="four columns">
-					<a href="images/full-size/photo-2-full.jpg" title="Photo Title Here" class="gallery-item lightbox-photo">
-						<img src="images/photo-2.jpg" alt="">
-					</a>
-				</li>
-				 -->
-				<li class="four columns"><a href="images/gallery/LesandPam_064.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_064.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_123.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_123.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_116.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_116.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_170.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_170.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_184.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_184.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_136.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_136.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSCN0167.jpg" title="Chester" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSCN0167.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMGP0448.JPG_3.jpg" title="Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0448.JPG_3.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0837.jpg" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0837.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_021.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_021.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_143.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_143.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/mallie yard.jpg" title="Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/mallie yard.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_102.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_102.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_142.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_142.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0311.JPG_2.jpg" title="Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0311.JPG_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/PC010082.jpg" title="The Pack" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010082.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/PC010075_2.jpg" title="Mallie & Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010075_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0570.jpg" title="Pam & Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0570.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0067_24.jpg" title="Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0067_24.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0164.JPG" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0164.JPG" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/Seminar.jpg" title="Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/Seminar.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_132.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_132.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_168.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_168.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0231.JPG_2.jpg" title="Pam, Les, Chester, & Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0231.JPG_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0059.jpg" title="Pam, Chester, & Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0059.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_133.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_133.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_191.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_191.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0035.jpg" title="Pam at the Grand Canyon" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0035.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_150.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_150.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_011.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_011.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_063.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_063.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_178.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_178.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0005_22.jpg" title="Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0005_22.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_125.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_125.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/PC010059_2.jpg" title="Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010059_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMGP0449.JPG_6.jpg" title="Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0449.JPG_6.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0269.JPG_12.jpg" title="Pam at costume ball" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0269.JPG_12.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0204.JPG" title="Mallie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0204.JPG" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMGP0650.jpg" title="Pam & Chester" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0650.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0355.jpg" title="Chester" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0355.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_188.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_188.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_058.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_058.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMGP0464.JPG_5.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0464.JPG_5.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_065.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_065.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0494.jpg" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0494.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/PC010132_2.jpg" title="Chester, Maggie, & Bear" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010132_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/My CowGirl_3.jpg" title="Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/My CowGirl_3.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_129.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_129.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0692.jpg" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0692.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/PC010106_2.jpg" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/PC010106_2.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0029_6.jpg" title="Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0029_6.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_117.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_117.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0172.JPG" title="Maggie" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0172.JPG" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/DSC_0037.jpg" title="Les @ Grand Canyon" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/DSC_0037.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_120.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_120.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_017.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_017.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMGP0653.jpg" title="Chester" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMGP0653.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_005.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_005.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_072.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_072.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/Kiawah May 2004 014_3.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/		Kiawah May 2004 014_3.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_014.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_014.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/LesandPam_059.jpg" title="Pam & Les" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/LesandPam_059.jpg" alt=""></a></li>
-				<li class="four columns"><a href="images/gallery/IMG_0084.jpg" title="Chester & Pam" class="gallery-item lightbox-photo"><img src="images/gallery/thumbnails/IMG_0084.jpg" alt=""></a></li>
+				
 			</ul>
 		</section>
 		<!-- Carousel of Photos / End -->
