@@ -40,6 +40,7 @@ function requireauth(){
   // $('#contact-form').slideUp('fast');
   $('#thanxforrsvp').hide();
   $('#identity').hide();
+  $('#rsvpquestions').hide();
   $('#auth').show();
   $('#entry_1110146062').val("");
   $('#entry_907370162').val("");
@@ -52,6 +53,7 @@ function authenticated(data){
   // $('#form-bg').removeClass('hidden');
   // $('#contact-form').slideDown('slow');
   $('#auth').hide();
+  $('#rsvpquestions').show();
   $('#identity').show();
    $('#identityimg').css('background-image', 'url("' + data.ThumbnailImageUrl + '")');
   // $('#identity').text(data.FullName);

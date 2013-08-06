@@ -1166,7 +1166,7 @@ html.touch .gallery-item:hover img{
 
 #rsvp #auth p{
 	font-family: 'PT Serif', serif;
-	font-size: 14px;
+	font-size: 18px;
 }
 
 #rsvp #contact-form {
@@ -1492,7 +1492,7 @@ html.touch .gallery-item:hover img{
 	#rsvp div.responses input[type="radio"]:checked + label { font-size: 11px;}
 	#rsvp .question { width:87%; }
 	#rsvp .question textarea{ font-size: 12px;}
-	#rsvp #auth p {font-size: 11px; width:87%;}
+	#rsvp #auth p {font-size: 12px; width:87%;}
 	.full { width: 100%!important; }
 	.logo { display: block; }
 	.navigation { 
